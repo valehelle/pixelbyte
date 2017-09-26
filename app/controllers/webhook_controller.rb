@@ -10,7 +10,7 @@ class WebhookController < ApplicationController
                     @value = change['value']
                     if @value['item'] == 'comment' then
                         @message = @value['message']
-                        if @message == 'PM' then
+                        if @message && @message.upcase == 'PM' then
                             @sender_name = @value['sender_name']
                             @comment_id = @value['comment_id']
                             @data = {message: 'Hello' + @sender_name}
