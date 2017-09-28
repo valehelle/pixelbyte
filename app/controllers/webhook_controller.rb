@@ -21,22 +21,22 @@ class WebhookController < ApplicationController
                             @url = 'https://graph.facebook.com/' + @comment_id + '/private_replies?access_token=' + @access_token
 
 
-                                request = Typhoeus::Request.new(
+                            request = Typhoeus::Request.new(
                                 @url,
                                 method: :post,
                                 body: "this is a request body",
-                                params: { message: "Hello " + @sender_name + ". This is an automated reply!. To know more please visit www.pixelbyte.gq" },
+                                params: { message: "Hi " + @sender_name + ". Ini adalah mesej automatik dari Pixie. Sila click link ini untuk mengetahui dengan lebih lanjut. www.pixelbyte.gq" },
                                 headers: { Accept: "text/html" }
                                 ).run
                             
                             @urlcomment = 'https://graph.facebook.com/' + @comment_id + '/comments?access_token=' + @access_token
 
 
-                                request = Typhoeus::Request.new(
+                            request = Typhoeus::Request.new(
                                 @urlcomment,
                                 method: :post,
                                 body: "this is a request body",
-                                params: { message: "Please check your inbox" },
+                                params: { message: 'Hi, ' + @sender_name + '. Nama saya Pixie, pembantu Facebook automatik anda. Komen ini telah dibalas secara automatik. Saya telah PM anda jika anda ingin mengetahui dengan lebih lanjut.'},
                                 headers: { Accept: "text/html" }
                                 ).run   
                         end
