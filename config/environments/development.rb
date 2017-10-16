@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
   
   config.reload_classes_only_on_change = false
-  
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Show full error reports.
   config.consider_all_requests_local = true
 
