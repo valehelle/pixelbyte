@@ -41,6 +41,17 @@ class PagesController < ApplicationController
     @current_tab = current_user.pages.find_by(id: id)
     page_graph = Koala::Facebook::API.new(@current_tab.access_token)
     @feeds = page_graph.get_connection('me', 'feed')
+    
+    @feeds.each do |post|
+      post_id = post['id']
+      message = post['message']
+      if @current_tab.posts.find_by(post_id: post_id).blank?
+        post = @current_tab.posts.build(post_id: post_id, content: message, is_reply: false, is_private_message: false)
+        post.save
+        puts 'save post'
+      end
+    end
+    @posts = @current_tab.posts
     @tabs = current_user.pages
   end
 end
