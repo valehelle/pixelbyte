@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_id: MyString
+  is_private_message: false
+  private_message_content: MyString
+  is_reply: false
+  reply_content: MyString
+  content: MyString
+  page: one
+
+two:
+  post_id: MyString
+  is_private_message: false
+  private_message_content: MyString
+  is_reply: false
+  reply_content: MyString
+  content: MyString
+  page: two

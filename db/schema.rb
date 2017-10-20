@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017072550) do
+ActiveRecord::Schema.define(version: 20171020154310) do
 
   create_table "pages", force: :cascade do |t|
     t.string "page_id"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20171017072550) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "post_id"
+    t.boolean "is_private_message"
+    t.string "private_message_content"
+    t.boolean "is_reply"
+    t.string "reply_content"
+    t.string "content"
+    t.integer "page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_posts_on_page_id"
   end
 
   create_table "users", force: :cascade do |t|
