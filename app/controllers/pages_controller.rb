@@ -31,9 +31,6 @@ class PagesController < ApplicationController
       page.save
      
     end
-    puts 'asd fsad fsad f sadf fsd'
-    @tab = current_user.pages
-    puts 'asfdsdaf'
-    puts @tab.first().name
+    @tabs = current_user.pages
   end
 end
