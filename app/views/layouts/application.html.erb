@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Standup App</title>
+    <title>Pixel Byte</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <%= csrf_meta_tags %>
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'%>
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'application', media: 'all'%>
+<%= javascript_include_tag 'application'%>
 <%= stylesheet_link_tag href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
   </head>
   <body class="fixed skin-blue-light">
 <div class="wrapper">
       <%= render 'layouts/navigation/layout'%>
-<div class="content-wrapper">
-          <%= yield %>
+      <div class="content-wrapper">
+        <div class = "row">
+          <div class = "col-xs-10 col-xs-push-1 col-md-8 col-md-push-2" style = "padding-top:20px;">
+            <%= yield %>
+          </div>
+        </div>
       </div>
-      <%= render 'layouts/navigation/footer' %>
 </div>
   </body>
 </html>

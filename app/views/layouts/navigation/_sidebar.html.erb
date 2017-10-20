@@ -3,25 +3,32 @@
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
+      <div class="user-panel">
+        <div style = "text-align:center; width: 100%;">
+          <h4><%= @current_tab.name %></h4>
+        </div>
+      </div>
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Menu</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="glyphicon glyphicon-th-large"></i> <span>Pages</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <% @tabs.each do | tab | %>
+              <li><%= link_to tab.name, tab %></li>
+            <% end %>
           </ul>
         </li>
+
+        <li class="header">Menu</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="#"><i class="glyphicon glyphicon-home"></i> <span>Feed</span></a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-cog"></i> <span>Settings</span></a></li>
+        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

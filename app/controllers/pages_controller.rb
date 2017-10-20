@@ -32,5 +32,16 @@ class PagesController < ApplicationController
      
     end
     @tabs = current_user.pages
+    @current_tab = @tabs.first()
+    redirect_to page_path(@current_tab)
+  end
+
+  def show
+    id = params[:id]
+    @current_tab = current_user.pages.find_by(id: id)
+    page_graph = Koala::Facebook::API.new(@current_tab.access_token)
+    @feeds = page_graph.get_connection('me', 'feed')
+    puts @feeds
+    @tabs = current_user.pages
   end
 end
