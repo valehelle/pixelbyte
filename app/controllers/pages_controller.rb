@@ -41,7 +41,6 @@ class PagesController < ApplicationController
     @current_tab = current_user.pages.find_by(id: id)
     page_graph = Koala::Facebook::API.new(@current_tab.access_token)
     @feeds = page_graph.get_connection('me', 'feed')
-    puts @feeds
     @tabs = current_user.pages
   end
 end
