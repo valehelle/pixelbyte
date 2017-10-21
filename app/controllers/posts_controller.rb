@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         if @post.update_attributes(post_params)
             redirect_to post_path, :notice => "Your post have been updated"
         else
-            render "show"
+            redirect_to post_path, :notice => "Fail to update your post"
         end
     end
 
