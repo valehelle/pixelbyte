@@ -27,6 +27,6 @@ class PostsController < ApplicationController
 
     private
         def post_params
-            params.require(:post).permit(:is_private_message, :private_message_content, :is_reply, :reply_content)
+            params.require(:post).permit(:is_private_message, :private_message_content, :is_reply, :reply_content, :keyword)
         end
 end
