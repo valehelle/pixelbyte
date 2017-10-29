@@ -2,12 +2,12 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo hidden-xs">
+    <%= link_to page_path(@current_tab), :class => "logo hidden-xs" do %>
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>P</b>BT</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Pixel</b>Byte</span>
-    </a>
+    <% end %>  
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
