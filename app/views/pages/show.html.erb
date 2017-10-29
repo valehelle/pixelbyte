@@ -4,7 +4,7 @@
       <h6 class="box-title"><%= post.content %></h6>
     </div>
     <div class="box-footer">
-        <%= link_to 'Automate', post_path(@current_tab,post),  {class: 'btn btn-primary'}  %>
+        <%= link_to 'Automate', post_path(@current_tab,post),  {class: 'btn btn-primary', id: 'automate-button' }  %>
     </div>
   </div>
 <% end %>
