@@ -59,7 +59,6 @@ class PagesController < ApplicationController
       if @current_tab.posts.find_by(post_id: post_id).blank?
         post = @current_tab.posts.build(post_id: post_id, content: message, is_reply: false, is_private_message: false)
         post.save
-        puts 'save post'
       end
     end
     @posts = @current_tab.posts
