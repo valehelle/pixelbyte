@@ -26,9 +26,14 @@
 
         <li class="header">Menu</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class = "active">
+        <li class = "<%= 'active' if current_page?(page_path(@current_tab)) %>">
         <%= link_to page_path(@current_tab) do %>
-          <i class="fa fa-feed"></i> <span>Feed</span>
+          <i class="fa fa-feed"></i> <span>Post</span>
+        <% end %>  
+        </li>
+        <li class = "<%= 'active' if current_page?(guide_path(@current_tab)) %>">
+        <%= link_to guide_path(@current_tab) do %>
+          <i class="fa fa-map-pin"></i> <span>Guide</span>
         <% end %>  
         </li>
         <li>
