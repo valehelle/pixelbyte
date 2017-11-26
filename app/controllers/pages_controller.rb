@@ -19,10 +19,8 @@ class PagesController < ApplicationController
 
       page = current_user.pages.where(page_id: page_id).first()
       if page.nil?
-        puts "empty"
         page = current_user.pages.build(name: name, access_token: access_token, is_admin: permission, page_id: page_id)
       else
-        puts "Not empty"
         page.name = name
         page.access_token = access_token
         page.is_admin = permission
@@ -40,9 +38,10 @@ class PagesController < ApplicationController
     id = params[:id]
     @current_tab = current_user.pages.find_by(id: id)
     page_graph = Koala::Facebook::API.new(@current_tab.access_token)
-    @feeds = page_graph.get_connection('me', 'feed')
-    webhook = Koala::Facebook::API.new(@current_tab.access_token).get_object(:me, { fields: [:is_webhooks_subscribed]})
-    is_page_subscribed = webhook['is_webhooks_subscribed']
+    @page = page_graph.get_object('me?fields=feed,picture,is_webhooks_subscribed')
+    feeds = @page['feed']['data']
+    is_page_subscribed = @page['is_webhooks_subscribed']
+    @picture = @page['picture']['data']['url']
     
     if !is_page_subscribed
       require "uri"
@@ -53,15 +52,16 @@ class PagesController < ApplicationController
       x = Net::HTTP.post_form(URI.parse('https://graph.facebook.com/v2.10/' + @current_tab.page_id + '/subscribed_apps'), params)
     end
 
-    @feeds.each do |post|
+    feeds.each do |post|
       post_id = post['id']
       message = post['message']
+      created_time = post['created_time']
       if @current_tab.posts.find_by(post_id: post_id).blank?
-        post = @current_tab.posts.build(post_id: post_id, content: message, is_reply: false, is_private_message: false)
+        post = @current_tab.posts.build(post_id: post_id, content: message, is_reply: false, is_private_message: false,created_time: created_time)
         post.save
       end
     end
-    @posts = @current_tab.posts
+    @posts = @current_tab.posts.reverse_order
     @tabs = current_user.pages
   end
 end
