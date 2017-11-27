@@ -40,7 +40,7 @@ class WebhookController < ApplicationController
                             @sender_name = @value['sender_name']
                             @comment_id = @value['comment_id']
                             @data = {message: 'Hello' + @sender_name}
-                            @access_token = 'EAABsvY2CRNMBAAXbZBZBj1fvAvqZBifZCMdlpHP1ImMLU2ZAXvqjBirFNn13Qva3arxBHwIFgc9HFxJqORS0cIvNTiwThkoB7dq2vgdujJNbntKnZApjYTWfz5wOyKa6L4pzq5fRF0nZCpZCZCkzsSU9JuHVo9vZBZAcLHyawH6dG31ZAgZDZD'
+                            @access_token = current_user.access_token
                             require 'net/http'
                             require 'uri'
                             require 'json'

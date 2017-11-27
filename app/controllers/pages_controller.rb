@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :facebook_expiry
 
   def index
     @graph = Koala::Facebook::API.new(current_user.access_token)
@@ -47,8 +47,7 @@ class PagesController < ApplicationController
       require "uri"
       require "net/http"
 
-      params = {'access_token' => @current_tab.access_token
-      }
+      params = {'access_token' => @current_tab.access_token}
       x = Net::HTTP.post_form(URI.parse('https://graph.facebook.com/v2.10/' + @current_tab.page_id + '/subscribed_apps'), params)
     end
 
