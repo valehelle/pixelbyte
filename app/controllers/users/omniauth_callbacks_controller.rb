@@ -4,7 +4,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
       
-      if @user.token_expiry_at.nil? || @user.token_expiry_at < Time.now.to_i
+      if request.env["omniauth.auth"]['credentials']
         @hash = request.env["omniauth.auth"]['credentials']
         @user.access_token = @hash.token
         @user.token_expiry_at = Time.now + 59.days

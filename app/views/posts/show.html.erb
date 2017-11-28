@@ -1,9 +1,33 @@
+<div class="col-md-12 facebook-post">
+    <div class="panel panel-default">
+        <div class="panel-body">
+           <section class="post-heading">
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="media">
+                          <div class="media-left">
+                            <a href="#">
+                              <img class="media-object photo-profile" src="<%= @current_tab.image %>" width="40" height="40" alt="...">
+                            </a>
+                          </div>
+                          <div class="media-body">
+                            <a href="#" class="anchor-username"><h4 class="media-heading"><%= @current_tab.name %></h4></a> 
+                            <a href="#" class="anchor-time"><%= get_time(@post.created_time) %></a>
+                          </div>
+                        </div>
+                    </div>
+                </div>             
+           </section>
+           <section class="post-body">
+               <p><%= truncate(@post.content, :length => 400) %></p>
+           </section>
+        </div>
+    </div>   
+</div>
 
-<div class="box box-primary">
-    <div class="box-body with-border">
-      <h6 class="box-title"><%= @post.content %></h6>
-    </div>
-    <div class="box-footer">
+<div class="col-md-12 facebook-post">
+    <div class="panel panel-default">
+        <div class="panel-body">
         <%= form_for @post, url: update_post_path(@current_tab,@post), html: {class: 'col-xs-12'} do |f| %>
             <div class="form-group ">
                 <%= f.label "Enable Private Message" %> 
@@ -43,5 +67,7 @@
            
             <%= f.submit "Save" , {class: 'btn btn-primary'}%>
         <% end %>
-    </div>
+        </div>
+    </div>   
 </div>
+
