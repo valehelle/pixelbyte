@@ -62,10 +62,9 @@
 
             <div class="form-group" id = "keyword-input">
                 <%= f.label "Keyword" %> 
-                <%= f.text_area   :keyword , {class: 'form-control', placeholder: 'Enter the keyword you want to detect. Separate it by "," '} %> <br />
+                <%= f.text_field   :keyword , {class: 'form-control', placeholder: 'Enter the keyword you want to detect. Separate it by "," '} %> <br />
             </div>              
-           
-            <%= f.submit "Save" , {class: 'btn btn-primary'}%>
+            <%= f.submit "Save" , {class: 'btn btn-primary save-btn'}%>
         <% end %>
         </div>
     </div>   

@@ -5,6 +5,8 @@ class PagesController < ApplicationController
     @graph = Koala::Facebook::API.new(current_user.access_token)
     begin
       pages = @graph.get_connections('me', 'accounts')
+      puts pages
+      
     rescue Koala::Facebook::AuthenticationError => e # Never do this!
       redirect_to user_facebook_omniauth_authorize_path and return
     end
@@ -17,7 +19,7 @@ class PagesController < ApplicationController
       permission = false
       perms = page['perms']
       perms.each do |perm|
-        if perm == 'ADMINISTER'
+      if perm == 'ADMINISTER'
           permission = true
         end
       end
@@ -31,10 +33,10 @@ class PagesController < ApplicationController
         page.is_admin = permission
         page.page_id = page_id
       end
-      page.save
-     
+      page.save!
     end
     @tabs = current_user.pages
+
     @current_tab = @tabs.first()
     redirect_to page_path(@current_tab)
   end
