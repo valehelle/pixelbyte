@@ -3,7 +3,8 @@ require 'capistrano/setup'
 
 # Include default deployment tasks
 require 'capistrano/deploy'
-
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
@@ -27,7 +28,7 @@ require 'capistrano/rails'
 require 'capistrano/passenger'
 
 # If you are using rbenv add these lines:
-# require 'capistrano/rbenv'
+ require 'capistrano/rbenv'
  set :rbenv_type, :user
  set :rbenv_ruby, '2.4.2'
 

@@ -1,10 +1,11 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.10.0'
 
 set :application, "pixel"
-set :repo_url, "git@github.com/valehelle/pixelbyte.git"
+set :repo_url, "https://github.com/valehelle/pixelbyte.git"
 
 set :deploy_to, '/home/deploy/pixel'
+
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
