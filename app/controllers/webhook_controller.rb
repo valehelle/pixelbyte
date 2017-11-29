@@ -11,6 +11,7 @@ class WebhookController < ApplicationController
                     if @value['item'] == 'comment' then
                         message = @value['message']
                         page_id = @value['parent_id'].to_s.split('_')[0]
+                        sender_name = @value['sender_name']
                         page = Page.find_by(page_id: page_id)
                         if page then
                             post_id = @value['post_id']
@@ -21,54 +22,22 @@ class WebhookController < ApplicationController
                                     comment_id = @value['comment_id']
                                     if post.is_reply
                                         message = post.reply_content
+                                        message = message.gsub(/@user/, sender_name)  
                                         if !message.nil? && message.length > 0
                                             page_graph.put_comment(comment_id, message)
                                         end                           
                                     end
                                     if post.is_private_message
                                         message = post.private_message_content
+                                        message = message.gsub(/@user/, sender_name)
                                         if !message.nil? && message.length > 0
                                             page_graph.put_connections(comment_id, "private_replies", :message=> message)
                                         end       
                                     end
                                 end                    
                             end
-
-                           
                         end
-                        if message && message.upcase == 'PM' then
-                            @sender_name = @value['sender_name']
-                            @comment_id = @value['comment_id']
-                            @data = {message: 'Hello' + @sender_name}
-                            @access_token = current_user.access_token
-                            require 'net/http'
-                            require 'uri'
-                            require 'json'
-                            @url = 'https://graph.facebook.com/' + @comment_id + '/private_replies?access_token=' + @access_token
-
-
-                            request = Typhoeus::Request.new(
-                                @url,
-                                method: :post,
-                                body: "this is a request body",
-                                params: { message: "Hi " + @sender_name + ". Ini adalah mesej automatik dari Pixie. Sila click link ini untuk mengetahui dengan lebih lanjut. www.pixelbyte.gq" },
-                                headers: { Accept: "text/html" }
-                                ).run
-                            
-                            @urlcomment = 'https://graph.facebook.com/' + @comment_id + '/comments?access_token=' + @access_token
-
-
-                            request = Typhoeus::Request.new(
-                                @urlcomment,
-                                method: :post,
-                                body: "this is a request body",
-                                params: { message: 'Hi, ' + @sender_name + '. Nama saya Pixie, pembantu Facebook automatik anda. Komen ini telah dibalas secara automatik. Saya telah PM anda jika anda ingin mengetahui dengan lebih lanjut.'},
-                                headers: { Accept: "text/html" }
-                                ).run   
-                        end
-
                     end
-                    
                 end                    
             end
         end
