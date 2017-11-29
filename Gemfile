@@ -22,6 +22,15 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem "koala"
 gem 'bootstrap-sass', '~> 3.3.6'
+
+#deploy
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+
+# Add this if you're using rbenv
+gem 'capistrano-rbenv', '~> 2.1'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
