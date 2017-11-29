@@ -5,7 +5,7 @@ set :application, "pixel"
 set :repo_url, "https://github.com/valehelle/pixelbyte.git"
 
 set :deploy_to, '/home/deploy/pixel'
-
+set :passenger_restart_with_touch, true
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
