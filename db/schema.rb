@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128141547) do
+ActiveRecord::Schema.define(version: 20171205075705) do
 
-  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "page_id"
     t.string "access_token"
     t.string "name"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20171128141547) do
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "post_id"
     t.boolean "is_private_message"
     t.string "private_message_content"
     t.boolean "is_reply"
     t.string "reply_content"
-    t.string "content"
+    t.text "content"
     t.bigint "page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171128141547) do
     t.index ["page_id"], name: "index_posts_on_page_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
