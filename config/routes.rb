@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root :to => 'pages#index'
   resources :webhook
   get '/dashboard/page/:page_id/guide', to: 'guide#show', as: 'guide'
+  get '/privacy', to: 'privacy#show', as: 'privacy'
   resources :pages, path: '/dashboard/page'
   get '/dashboard/page/:page_id/post/:post_id', to: 'posts#show', as: 'post'
   patch '/dashboard/page/:page_id/post/:post_id', to: 'posts#update', as: 'update_post'
