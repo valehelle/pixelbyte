@@ -70,7 +70,7 @@ class PagesController < ApplicationController
         post.save
       end
     end
-    @posts = @current_tab.posts.reverse_order
+    @posts = @current_tab.posts
     @tabs = current_user.pages
   end
 end
