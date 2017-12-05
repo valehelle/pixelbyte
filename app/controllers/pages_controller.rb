@@ -64,6 +64,8 @@ class PagesController < ApplicationController
     feeds.each do |post|
       post_id = post['id']
       message = post['message']
+      message.encode('UTF-8', :invalid => :replace, :undef => :replace)
+      puts message
       created_time = post['created_time']
       if @current_tab.posts.find_by(post_id: post_id).blank?
         post = @current_tab.posts.build(post_id: post_id, content: message, is_reply: false, is_private_message: false,created_time: created_time)
