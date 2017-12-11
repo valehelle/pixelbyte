@@ -36,4 +36,24 @@
 </div>
     
 </body>
+<!-- WhatsHelp.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            facebook: "159328771288541", // Facebook page ID
+            email: "pixelbyte.malaysia@gmail.com", // Email
+            company_logo_url: "//storage.whatshelp.io/widget/43/43c4/43c4a9e1013a3e256ab79b6b016a4017/21558585_161668797721205_7569037789076235707_n.png", // URL of company logo (png, jpg, gif)
+            greeting_message: "Hello! If you need any help, feel free to message us on facebook!", // Text of greeting message
+            call_to_action: "Contact us", // Call to action
+            button_color: "#129BF4", // Color of button
+            position: "right", // Position may be 'right' or 'left'
+            order: "facebook,email" // Order of buttons
+        };
+        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /WhatsHelp.io widget -->
 </html>
